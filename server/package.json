@@ -15,10 +15,14 @@
     "studio": "cross-env DATABASE_HOST='localhost' prisma studio"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.18",
     "@types/express": "^4.17.17",
     "@types/node": "18.16",
+    "add": "^2.0.6",
     "concurrently": "^8.2.2",
+    "cors": "^2.8.5",
     "cross-env": "^7.0.3",
+    "pnpm": "^10.11.0",
     "prisma": "^5.2.0",
     "ts-node": "^10.9.1",
     "ts-node-dev": "^2.0.0",
