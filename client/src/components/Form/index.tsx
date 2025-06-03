@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, FormEvent } from "react";
-import { createUser, UserData } from "@/services/Users";
 
 export default function UserForm() {
   const [firstName, setFirstName] = useState("");
@@ -15,20 +14,6 @@ export default function UserForm() {
   };
 
   const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-
-    const userData: UserData = {
-      firstName: firstName.trim(),
-      lastName: lastName.trim(),
-      age: age,
-    };
-
-    try {
-      const result = await createUser(userData);
-      resetFormFields();
-    } catch (error: any) {
-      console.error("Erro ao criar usuário:", error);
-    }
   };
 
   return (
@@ -63,7 +48,7 @@ export default function UserForm() {
           id="form-age"
           className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500"
           type="number"
-          value={age}
+          value={age === 0 ? "" : age}
           onChange={(e) => setAge(Number(e.target.value))}
         />
       </div>
