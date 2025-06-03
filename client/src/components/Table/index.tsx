@@ -7,27 +7,7 @@ export default function UserTable() {
   const [users, setUsers] = useState<User[]>([]);
 
   useEffect(() => {
-    let isMounted = true;
-
-    const fetchUsers = async () => {
-      try {
-        const data = await getUser();
-        if (isMounted) {
-          setUsers(data);
-        }
-      } catch (error) {
-        console.error("Erro ao buscar usuários:", error);
-        if (isMounted) {
-          setUsers([]);
-        }
-      }
-    };
-
-    fetchUsers();
-
-    return () => {
-      isMounted = false;
-    };
+    getUser().then(setUsers).catch(() => setUsers([]));
   }, []);
 
   if (users.length === 0) {
