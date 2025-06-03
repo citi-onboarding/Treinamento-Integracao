@@ -1,18 +1,18 @@
-import UserCardList from "@/components/UserMap";
-import Form from "@/components/AddUser";
+import UserForm from "@/components/Form";
+import UserTable from "@/components/Table";
 
-export default function Home() {
+export default async function UsersPage() {
   return (
-    <div className="flex flex-1 flex-row h-full justify-around items-center bg-gray-500">
-      <div className="flex flex-col justify-center items-center h-full w-2/5 ">
-        <h1 className="text-3xl font-bold text-white mb-4">Adicionar usuário</h1>
-        <Form />  
-      </div>
-
-      <div className="flex flex-1 flex-col justify-center items-center h-full">
-        <h1 className="text-3xl font-bold text-white mb-4">Lista de usuários</h1>
-        <UserCardList />
-      </div>
+    <div className="p-4 md:p-8 lg:p-12 bg-gray-100 min-h-screen">
+      <h1 className="text-3xl font-bold text-center text-blue-600 mb-8">
+        Gerenciamento de Usuários 🧑‍💻
+      </h1>
+      <UserForm />
+      <hr className="my-8" />
+      <h2 className="text-2xl font-semibold mb-6 text-gray-800 text-center">
+        Lista de Usuários 📋
+      </h2>
+      <UserTable />
     </div>
   );
 }
