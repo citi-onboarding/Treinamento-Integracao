@@ -1,17 +1,23 @@
 "use client";
 
-import { useState } from "react";
-import { User } from "@/services/Users";
+import { useState, useEffect } from "react";
+import { User, getUsers } from "@/services/Users";
 
-const initialMockUsers: User[] = [
-  { id: 1, firstName: "Ana", lastName: "Souza", age: 28 },
-  { id: 2, firstName: "Bruno", lastName: "Silva", age: 34 },
-  { id: 3, firstName: "Carla", lastName: "Lima", age: 22 },
-  { id: 4, firstName: "Daniel", lastName: "Oliveira", age: 45 },
-];
 
 export default function UserTable() {
-  const [users, setUsers] = useState<User[]>(initialMockUsers);
+  const [users, setUsers] = useState<User[]>([]);
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const data = await getUsers();
+        setUsers(data);
+      } catch (error) {
+        setUsers([]);
+      }
+    };
+    fetchUsers();
+  }, [])
 
   if (users.length === 0) {
     return <p className="text-center text-gray-500 py-4">Nenhum usuário para exibir.</p>;

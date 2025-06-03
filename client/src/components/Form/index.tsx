@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, FormEvent } from "react";
+import { User, createUser } from "@/services/Users";
 
 export default function UserForm() {
   const [firstName, setFirstName] = useState("");
@@ -14,7 +15,22 @@ export default function UserForm() {
   };
 
   const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+
+    const userData: Omit<User, 'id'> = {
+      firstName: firstName.trim(),
+      lastName: lastName.trim(),
+      age: age,
   };
+
+  try {
+    await createUser(userData);
+    resetFormFields();
+  } catch (error: any) {
+    console.error("Erro ao criar usuário:", error);
+    alert("Erro ao criar usuário. Por favor, tente novamente.");
+  }
+  }
 
   return (
     <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-6 max-w-3xl mx-auto">
